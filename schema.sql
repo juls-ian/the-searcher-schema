@@ -1,0 +1,133 @@
+-- ENUM type
+CREATE TYPE staff_status AS ENUM ('active', 'inactive');
+CREATE TYPE bulletin_category AS ENUM ('announcement', 'advisory', 'reminder');
+CREATE TYPE multimedia_category AS ENUM ('announcement', 'advisory', 'reminder');
+CREATE TYPE archive_category AS ENUM ('article', 'multimedia', 'issues', 'ed_board');
+
+-- Staffs table
+CREATE TABLE staffs (
+    id INTEGER PRIMARY KEY,
+    staff_id VARCHAR(100) UNIQUE NOT NULL, 
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    full_name VARCHAR(200) GENERATED ALWAYS AS (first_name || ' ' || last_name) STORED,
+    pen_name VARCHAR(100) UNIQUE NOT NULL,
+    birthdate DATE NOT NULL,
+    year_level INTEGER,
+    course VARCHAR(255),
+    email VARCHAR(255) UNIQUE NOT NULL,
+    phone VARCHAR(20),
+    role VARCHAR(100) NOT NULL,
+    term VARCHAR(100), 
+    joined_at DATE,
+    status staff_status NOT NULL DEFAULT 'active',
+    left_at DATE,
+    password_hash VARCHAR(255) NOT NULL,
+    profile_pic VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    --UNIQUE(pen_name, email)
+);
+
+-- Categories table
+CREATE TABLE categories (
+    id SERIAL PRIMARY KEY, 
+    category VARCHAR(20) NOT NULL,
+    slug TEXT UNIQUE NOT NULL,
+    parent_id INTEGER REFERENCES categories(id) ON DELETE SET NULL
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Articles table
+CREATE TABLE articles (
+    id SERIAL PRIMARY KEY, 
+    title VARCHAR(255) NOT NULL, 
+    category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
+    writer_id INTEGER REFERENCES staffs(id),
+    body TEXT NOT NULL,
+    published_on TIMESTAMP,
+    is_live BOOLEAN DEFAULT FALSE,
+    is_archived BOOLEAN DEFAULT FALSE,
+    cover_photo TEXT,
+    cover_artist INTEGER REFERENCES staffs(id),
+    thumbnail TEXT,
+    thumbnail_artist INTEGER REFERENCES staffs(id),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    archived_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
+);
+
+CREATE TABLE calendar (
+    id SERIAL PRIMARY KEY,
+    start_at TIMESTAMP NOT NULL,
+    end_at TIMESTAMP,
+    is_allday BOOLEAN DEFAULT FALSE,
+    venue VARCHAR(255),
+    details VARCHAR(255),
+    is_public BOOLEAN DEFAULT FALSE,
+    event_type VARCHAR(255) --release, meeting, event
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    deleted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
+);
+
+
+CREATE TABLE bulletin (
+    id SERIAL PRIMARY KEY, 
+    posted_at TIMESTAMP NOT NULL,
+    category bulletin_category NOT NULL,
+    writer_id INTEGER REFERENCES staffs(id),
+    caption TEXT,
+    cover_photo TEXT, 
+    artist_id INTEGER REFERENCES staffs(id)
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    deleted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)
+
+CREATE TABLE multimedia (
+    id SERIAL PRIMARY KEY, 
+    title VARCHAR(255),
+    category multimedia_category NOT NULL, 
+    published_at TIMESTAMP
+    multimedia_files TEXT NOT NULL, --path
+    multimedia_artist INT REFERENCES staffs(id) NOT NULL,
+    thumbnail_photo TEXT NOT NULL, --path
+    thumbnail_artist INT REFERENCES staffs(id) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    deleted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    archived_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)
+
+CREATE TABLE issues (
+    issue_id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    publication_date DATE NOT NULL,
+    description TEXT,
+    is_archived BOOLEAN DEFAULT FALSE,
+    archived_at TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    deleted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    archived_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+--data inserted with the staff creation form
+CREATE TABLE editorial_boards (
+    id SERIAL PRIMARY KEY,
+    staff_id INTEGER NOT NULL REFERENCES staff(id) ON DELETE CASCADE,
+    term VARCHAR(100) NOT NULL, --2024-2025...
+    role VARCHAR(100) NOT NULL,
+    archived_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)
+
+CREATE TABLE community_segments (
+    id SERIAL PRIMARY ID, 
+    title VARCHAR(255)
+)
