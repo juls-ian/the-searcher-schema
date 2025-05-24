@@ -59,7 +59,7 @@
           "default": null,
           "check": null,
           "primary": false,
-          "unique": false,
+          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -99,7 +99,7 @@
           "default": null,
           "check": null,
           "primary": false,
-          "unique": false,
+          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -145,7 +145,7 @@
         },
         "status": {
           "name": "status",
-          "type": "user_status",
+          "type": "staff_status",
           "default": "active",
           "check": null,
           "primary": false,
@@ -202,14 +202,24 @@
           "unique": false,
           "notNull": false,
           "comment": null
+        },
+        "deleted_at": {
+          "name": "deleted_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
         }
       },
       "comment": null,
       "indexes": {},
       "constraints": {}
     },
-    "categories": {
-      "name": "categories",
+    "articles_categories": {
+      "name": "articles_categories",
       "columns": {
         "id": {
           "name": "id",
@@ -244,6 +254,26 @@
         "parent_id": {
           "name": "parent_id",
           "type": "int4",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
           "default": null,
           "check": null,
           "primary": false,
@@ -311,7 +341,7 @@
         },
         "published_on": {
           "name": "published_on",
-          "type": "date",
+          "type": "timestamp",
           "default": null,
           "check": null,
           "primary": false,
@@ -319,14 +349,34 @@
           "notNull": false,
           "comment": null
         },
-        "cover": {
-          "name": "cover",
-          "type": "varchar",
+        "is_live": {
+          "name": "is_live",
+          "type": "bool",
           "default": null,
           "check": null,
           "primary": false,
           "unique": false,
           "notNull": false,
+          "comment": null
+        },
+        "is_archived": {
+          "name": "is_archived",
+          "type": "bool",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "cover_photo": {
+          "name": "cover_photo",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
           "comment": null
         },
         "cover_artist": {
@@ -339,9 +389,19 @@
           "notNull": false,
           "comment": null
         },
+        "cover_caption": {
+          "name": "cover_caption",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
         "thumbnail": {
           "name": "thumbnail",
-          "type": "varchar",
+          "type": "text",
           "default": null,
           "check": null,
           "primary": false,
@@ -378,6 +438,898 @@
           "unique": false,
           "notNull": false,
           "comment": null
+        },
+        "deleted_at": {
+          "name": "deleted_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "archived_at": {
+          "name": "archived_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        }
+      },
+      "comment": null,
+      "indexes": {},
+      "constraints": {}
+    },
+    "calendar": {
+      "name": "calendar",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "default": null,
+          "check": null,
+          "primary": true,
+          "unique": true,
+          "notNull": true,
+          "comment": null
+        },
+        "start_at": {
+          "name": "start_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "end_at": {
+          "name": "end_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "is_allday": {
+          "name": "is_allday",
+          "type": "bool",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "venue": {
+          "name": "venue",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "details": {
+          "name": "details",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "is_public": {
+          "name": "is_public",
+          "type": "bool",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "event_type": {
+          "name": "event_type",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "deleted_at": {
+          "name": "deleted_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        }
+      },
+      "comment": null,
+      "indexes": {},
+      "constraints": {}
+    },
+    "bulletin": {
+      "name": "bulletin",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "default": null,
+          "check": null,
+          "primary": true,
+          "unique": true,
+          "notNull": true,
+          "comment": null
+        },
+        "posted_at": {
+          "name": "posted_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "category": {
+          "name": "category",
+          "type": "bulletin_category",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "writer_id": {
+          "name": "writer_id",
+          "type": "int4",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "details": {
+          "name": "details",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "cover_photo": {
+          "name": "cover_photo",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "cover_artist": {
+          "name": "cover_artist",
+          "type": "int4",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "deleted_at": {
+          "name": "deleted_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        }
+      },
+      "comment": null,
+      "indexes": {},
+      "constraints": {}
+    },
+    "multimedia": {
+      "name": "multimedia",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "default": null,
+          "check": null,
+          "primary": true,
+          "unique": true,
+          "notNull": true,
+          "comment": null
+        },
+        "title": {
+          "name": "title",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "category": {
+          "name": "category",
+          "type": "multimedia_category",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "published_at": {
+          "name": "published_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "multimedia_files": {
+          "name": "multimedia_files",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "multimedia_artist": {
+          "name": "multimedia_artist",
+          "type": "int4",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "thumbnail_photo": {
+          "name": "thumbnail_photo",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "thumbnail_artist": {
+          "name": "thumbnail_artist",
+          "type": "int4",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "deleted_at": {
+          "name": "deleted_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "archived_at": {
+          "name": "archived_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        }
+      },
+      "comment": null,
+      "indexes": {},
+      "constraints": {}
+    },
+    "issues": {
+      "name": "issues",
+      "columns": {
+        "issue_id": {
+          "name": "issue_id",
+          "type": "serial",
+          "default": null,
+          "check": null,
+          "primary": true,
+          "unique": true,
+          "notNull": true,
+          "comment": null
+        },
+        "title": {
+          "name": "title",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "publication_date": {
+          "name": "publication_date",
+          "type": "date",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "contributors": {
+          "name": "contributors",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "writers": {
+          "name": "writers",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "photojournalists": {
+          "name": "photojournalists",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "artists": {
+          "name": "artists",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "layout_artists": {
+          "name": "layout_artists",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "editors": {
+          "name": "editors",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "outsourced_photos": {
+          "name": "outsourced_photos",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "others": {
+          "name": "others",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "issue_file": {
+          "name": "issue_file",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "thumbnail": {
+          "name": "thumbnail",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "is_archived": {
+          "name": "is_archived",
+          "type": "bool",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "archived_at": {
+          "name": "archived_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "deleted_at": {
+          "name": "deleted_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        }
+      },
+      "comment": null,
+      "indexes": {},
+      "constraints": {}
+    },
+    "editorial_boards": {
+      "name": "editorial_boards",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "default": null,
+          "check": null,
+          "primary": true,
+          "unique": true,
+          "notNull": true,
+          "comment": null
+        },
+        "staff_id": {
+          "name": "staff_id",
+          "type": "int4",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "term": {
+          "name": "term",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "role": {
+          "name": "role",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "archived_at": {
+          "name": "archived_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        }
+      },
+      "comment": null,
+      "indexes": {},
+      "constraints": {}
+    },
+    "community_segments": {
+      "name": "community_segments",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "default": null,
+          "check": null,
+          "primary": true,
+          "unique": true,
+          "notNull": true,
+          "comment": null
+        },
+        "title": {
+          "name": "title",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "segment_type": {
+          "name": "segment_type",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "series_of": {
+          "name": "series_of",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "writer_id": {
+          "name": "writer_id",
+          "type": "int4",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "series_order": {
+          "name": "series_order",
+          "type": "int4",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "segment_cover": {
+          "name": "segment_cover",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "cover_artist": {
+          "name": "cover_artist",
+          "type": "int4",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "cover_caption": {
+          "name": "cover_caption",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "deleted_at": {
+          "name": "deleted_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "archived_at": {
+          "name": "archived_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        }
+      },
+      "comment": null,
+      "indexes": {},
+      "constraints": {}
+    },
+    "segments_poll": {
+      "name": "segments_poll",
+      "columns": {
+        "segment_id": {
+          "name": "segment_id",
+          "type": "serial",
+          "default": null,
+          "check": null,
+          "primary": true,
+          "unique": true,
+          "notNull": true,
+          "comment": null
+        },
+        "question": {
+          "name": "question",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "options": {
+          "name": "options",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "duration": {
+          "name": "duration",
+          "type": "interval",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        }
+      },
+      "comment": null,
+      "indexes": {},
+      "constraints": {}
+    },
+    "segments_article": {
+      "name": "segments_article",
+      "columns": {
+        "segment_id": {
+          "name": "segment_id",
+          "type": "serial",
+          "default": null,
+          "check": null,
+          "primary": true,
+          "unique": true,
+          "notNull": true,
+          "comment": null
+        },
+        "body": {
+          "name": "body",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        }
+      },
+      "comment": null,
+      "indexes": {},
+      "constraints": {}
+    },
+    "newsletter": {
+      "name": "newsletter",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "default": null,
+          "check": null,
+          "primary": true,
+          "unique": true,
+          "notNull": true,
+          "comment": null
+        },
+        "email": {
+          "name": "email",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "status": {
+          "name": "status",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "subscribed_on": {
+          "name": "subscribed_on",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
         }
       },
       "comment": null,
@@ -386,25 +1338,25 @@
     }
   },
   "relationships": {
-    "categories_id_to_categories_parent_id": {
-      "name": "categories_id_to_categories_parent_id",
-      "primaryTableName": "categories",
+    "articles_categories_id_to_articles_categories_parent_id": {
+      "name": "articles_categories_id_to_articles_categories_parent_id",
+      "primaryTableName": "articles_categories",
       "primaryColumnName": "id",
-      "foreignTableName": "categories",
+      "foreignTableName": "articles_categories",
       "foreignColumnName": "parent_id",
       "cardinality": "ONE_TO_MANY",
       "updateConstraint": "NO_ACTION",
       "deleteConstraint": "SET_NULL"
     },
-    "categories_id_to_articles_category_id": {
-      "name": "categories_id_to_articles_category_id",
-      "primaryTableName": "categories",
+    "articles_categories_id_to_articles_category_id": {
+      "name": "articles_categories_id_to_articles_category_id",
+      "primaryTableName": "articles_categories",
       "primaryColumnName": "id",
       "foreignTableName": "articles",
       "foreignColumnName": "category_id",
       "cardinality": "ONE_TO_MANY",
       "updateConstraint": "NO_ACTION",
-      "deleteConstraint": "SET_NULL"
+      "deleteConstraint": "CASCADE"
     },
     "staffs_id_to_articles_writer_id": {
       "name": "staffs_id_to_articles_writer_id",
@@ -435,6 +1387,96 @@
       "cardinality": "ONE_TO_MANY",
       "updateConstraint": "NO_ACTION",
       "deleteConstraint": "NO_ACTION"
+    },
+    "staffs_id_to_bulletin_writer_id": {
+      "name": "staffs_id_to_bulletin_writer_id",
+      "primaryTableName": "staffs",
+      "primaryColumnName": "id",
+      "foreignTableName": "bulletin",
+      "foreignColumnName": "writer_id",
+      "cardinality": "ONE_TO_MANY",
+      "updateConstraint": "NO_ACTION",
+      "deleteConstraint": "NO_ACTION"
+    },
+    "staffs_id_to_bulletin_cover_artist": {
+      "name": "staffs_id_to_bulletin_cover_artist",
+      "primaryTableName": "staffs",
+      "primaryColumnName": "id",
+      "foreignTableName": "bulletin",
+      "foreignColumnName": "cover_artist",
+      "cardinality": "ONE_TO_MANY",
+      "updateConstraint": "NO_ACTION",
+      "deleteConstraint": "NO_ACTION"
+    },
+    "staffs_id_to_multimedia_multimedia_artist": {
+      "name": "staffs_id_to_multimedia_multimedia_artist",
+      "primaryTableName": "staffs",
+      "primaryColumnName": "id",
+      "foreignTableName": "multimedia",
+      "foreignColumnName": "multimedia_artist",
+      "cardinality": "ONE_TO_MANY",
+      "updateConstraint": "NO_ACTION",
+      "deleteConstraint": "NO_ACTION"
+    },
+    "staffs_id_to_multimedia_thumbnail_artist": {
+      "name": "staffs_id_to_multimedia_thumbnail_artist",
+      "primaryTableName": "staffs",
+      "primaryColumnName": "id",
+      "foreignTableName": "multimedia",
+      "foreignColumnName": "thumbnail_artist",
+      "cardinality": "ONE_TO_MANY",
+      "updateConstraint": "NO_ACTION",
+      "deleteConstraint": "NO_ACTION"
+    },
+    "staffs_id_to_editorial_boards_staff_id": {
+      "name": "staffs_id_to_editorial_boards_staff_id",
+      "primaryTableName": "staffs",
+      "primaryColumnName": "id",
+      "foreignTableName": "editorial_boards",
+      "foreignColumnName": "staff_id",
+      "cardinality": "ONE_TO_MANY",
+      "updateConstraint": "NO_ACTION",
+      "deleteConstraint": "CASCADE"
+    },
+    "staffs_id_to_community_segments_writer_id": {
+      "name": "staffs_id_to_community_segments_writer_id",
+      "primaryTableName": "staffs",
+      "primaryColumnName": "id",
+      "foreignTableName": "community_segments",
+      "foreignColumnName": "writer_id",
+      "cardinality": "ONE_TO_MANY",
+      "updateConstraint": "NO_ACTION",
+      "deleteConstraint": "NO_ACTION"
+    },
+    "staffs_id_to_community_segments_cover_artist": {
+      "name": "staffs_id_to_community_segments_cover_artist",
+      "primaryTableName": "staffs",
+      "primaryColumnName": "id",
+      "foreignTableName": "community_segments",
+      "foreignColumnName": "cover_artist",
+      "cardinality": "ONE_TO_MANY",
+      "updateConstraint": "NO_ACTION",
+      "deleteConstraint": "NO_ACTION"
+    },
+    "community_segments_id_to_segments_poll_segment_id": {
+      "name": "community_segments_id_to_segments_poll_segment_id",
+      "primaryTableName": "community_segments",
+      "primaryColumnName": "id",
+      "foreignTableName": "segments_poll",
+      "foreignColumnName": "segment_id",
+      "cardinality": "ONE_TO_ONE",
+      "updateConstraint": "NO_ACTION",
+      "deleteConstraint": "CASCADE"
+    },
+    "community_segments_id_to_segments_article_segment_id": {
+      "name": "community_segments_id_to_segments_article_segment_id",
+      "primaryTableName": "community_segments",
+      "primaryColumnName": "id",
+      "foreignTableName": "segments_article",
+      "foreignColumnName": "segment_id",
+      "cardinality": "ONE_TO_ONE",
+      "updateConstraint": "NO_ACTION",
+      "deleteConstraint": "CASCADE"
     }
   },
   "tableGroups": {}

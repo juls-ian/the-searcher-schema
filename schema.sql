@@ -26,16 +26,16 @@ CREATE TABLE staffs (
     profile_pic VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    deleted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    deleted_at TIMESTAMP
     --UNIQUE(pen_name, email)
 );
 
 -- Categories table
-CREATE TABLE categories (
+CREATE TABLE articles_categories (
     id SERIAL PRIMARY KEY, 
     category VARCHAR(20) NOT NULL,
     slug TEXT UNIQUE NOT NULL,
-    parent_id INTEGER REFERENCES categories(id) ON DELETE SET NULL
+    parent_id INTEGER REFERENCES articles_categories(id) ON DELETE SET NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -44,20 +44,21 @@ CREATE TABLE categories (
 CREATE TABLE articles (
     id SERIAL PRIMARY KEY, 
     title VARCHAR(255) NOT NULL, 
-    category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
+    category_id INTEGER REFERENCES articles_categories(id) ON DELETE CASCADE,
     writer_id INTEGER REFERENCES staffs(id),
     body TEXT NOT NULL,
     published_on TIMESTAMP,
     is_live BOOLEAN DEFAULT FALSE,
     is_archived BOOLEAN DEFAULT FALSE,
-    cover_photo TEXT,
+    cover_photo TEXT NOT NULL, -- path
     cover_artist INTEGER REFERENCES staffs(id),
-    thumbnail TEXT,
+    cover_caption VARCHAR(255),
+    thumbnail TEXT, -- path
     thumbnail_artist INTEGER REFERENCES staffs(id),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    deleted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    archived_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    deleted_at TIMESTAMP,
+    archived_at TIMESTAMP 
 
 );
 
@@ -69,10 +70,10 @@ CREATE TABLE calendar (
     venue VARCHAR(255),
     details VARCHAR(255),
     is_public BOOLEAN DEFAULT FALSE,
-    event_type VARCHAR(255) --release, meeting, event
+    event_type VARCHAR(255), --release, meeting, event
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    deleted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMP
 
 );
 
@@ -82,52 +83,94 @@ CREATE TABLE bulletin (
     posted_at TIMESTAMP NOT NULL,
     category bulletin_category NOT NULL,
     writer_id INTEGER REFERENCES staffs(id),
-    caption TEXT,
+    details TEXT,
     cover_photo TEXT, 
-    artist_id INTEGER REFERENCES staffs(id)
+    cover_artist INTEGER REFERENCES staffs(id),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    deleted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-)
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMP 
+);
 
 CREATE TABLE multimedia (
     id SERIAL PRIMARY KEY, 
     title VARCHAR(255),
     category multimedia_category NOT NULL, 
-    published_at TIMESTAMP
+    published_at TIMESTAMP,
     multimedia_files TEXT NOT NULL, --path
     multimedia_artist INT REFERENCES staffs(id) NOT NULL,
     thumbnail_photo TEXT NOT NULL, --path
     thumbnail_artist INT REFERENCES staffs(id) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    deleted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    archived_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-)
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMP, 
+    archived_at TIMESTAMP 
+);
 
 CREATE TABLE issues (
     issue_id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
     publication_date DATE NOT NULL,
-    description TEXT,
+    contributors TEXT NOT NULL,
+    writers TEXT NOT NULL,
+    photojournalists TEXT NOT NULL,
+    artists TEXT NOT NULL,
+    layout_artists TEXT NOT NULL, 
+    editors TEXT NOT NULL,
+    outsourced_photos TEXT NOT NULL,
+    others TEXT,
+    issue_file TEXT NOT NULL, -- path
+    thumbnail TEXT NOT NULL, -- path
     is_archived BOOLEAN DEFAULT FALSE,
     archived_at TIMESTAMP,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    deleted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    archived_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMP, 
+    archived_at TIMESTAMP 
 );
 
 --data inserted with the staff creation form
 CREATE TABLE editorial_boards (
     id SERIAL PRIMARY KEY,
-    staff_id INTEGER NOT NULL REFERENCES staff(id) ON DELETE CASCADE,
+    staff_id INTEGER REFERENCES staffs(id) ON DELETE CASCADE,
     term VARCHAR(100) NOT NULL, --2024-2025...
     role VARCHAR(100) NOT NULL,
     archived_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-)
+);
 
 CREATE TABLE community_segments (
-    id SERIAL PRIMARY ID, 
-    title VARCHAR(255)
-)
+    id SERIAL PRIMARY KEY, 
+    title VARCHAR(255) NOT NULL,
+    segment_type VARCHAR(50), -- article or poll
+    series_of VARCHAR(255) NOT NULL,
+    writer_id INTEGER REFERENCES staffs(id) NOT NULL,
+    series_order INT NULL,
+    segment_cover TEXT NOT NULL, -- path 
+    cover_artist INTEGER REFERENCES staffs(id),
+    cover_caption VARCHAR(255) NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMP,    
+    archived_at TIMESTAMP 
+);
+
+CREATE TABLE segments_poll (
+    segment_id SERIAL PRIMARY KEY REFERENCES community_segments(id) ON DELETE CASCADE, 
+    question TEXT NOT NULL,
+    options TEXT[] NOT NULL,
+    duration INTERVAL NOT NULL
+);
+
+CREATE TABLE segments_article (
+    segment_id SERIAL PRIMARY KEY REFERENCES community_segments(id) ON DELETE CASCADE,
+    body TEXT NULL
+);
+
+CREATE TABLE newsletter (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(255),
+    status VARCHAR(255),
+    subscribed_on TIMESTAMP
+);
+
+
