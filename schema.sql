@@ -65,6 +65,7 @@ CREATE TABLE articles (
     thumbnail TEXT, -- path
     thumbnail_artist INTEGER REFERENCES staffs(id),
     add_to_ticker BOOLEAN DEFAULT FALSE,
+    archived_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     deleted_at TIMESTAMP,

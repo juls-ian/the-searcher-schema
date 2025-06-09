@@ -505,6 +505,16 @@
           "notNull": false,
           "comment": null
         },
+        "archived_at": {
+          "name": "archived_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
         "created_at": {
           "name": "created_at",
           "type": "timestamp",
@@ -527,16 +537,6 @@
         },
         "deleted_at": {
           "name": "deleted_at",
-          "type": "timestamp",
-          "default": null,
-          "check": null,
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "comment": null
-        },
-        "archived_at": {
-          "name": "archived_at",
           "type": "timestamp",
           "default": null,
           "check": null,
