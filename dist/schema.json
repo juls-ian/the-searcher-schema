@@ -485,16 +485,6 @@
           "notNull": false,
           "comment": null
         },
-        "thumbnail_caption": {
-          "name": "thumbnail_caption",
-          "type": "varchar",
-          "default": null,
-          "check": null,
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "comment": null
-        },
         "thumbnail_artist": {
           "name": "thumbnail_artist",
           "type": "int4",

@@ -63,7 +63,6 @@ CREATE TABLE articles (
     cover_artist INTEGER REFERENCES staffs(id),
     cover_caption VARCHAR(255),
     thumbnail TEXT, -- path
-    thumbnail_caption VARCHAR(255),
     thumbnail_artist INTEGER REFERENCES staffs(id),
     add_to_ticker BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
