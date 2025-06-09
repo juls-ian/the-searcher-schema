@@ -5,7 +5,7 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "int4",
+          "type": "serial",
           "default": null,
           "check": null,
           "primary": true,
@@ -63,16 +63,6 @@
           "notNull": true,
           "comment": null
         },
-        "birthdate": {
-          "name": "birthdate",
-          "type": "date",
-          "default": null,
-          "check": null,
-          "primary": false,
-          "unique": false,
-          "notNull": true,
-          "comment": null
-        },
         "year_level": {
           "name": "year_level",
           "type": "int4",
@@ -113,10 +103,20 @@
           "notNull": false,
           "comment": null
         },
+        "edboard_position": {
+          "name": "edboard_position",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
         "role": {
           "name": "role",
           "type": "varchar",
-          "default": null,
+          "default": "staff",
           "check": null,
           "primary": false,
           "unique": false,
@@ -133,16 +133,6 @@
           "notNull": false,
           "comment": null
         },
-        "joined_at": {
-          "name": "joined_at",
-          "type": "date",
-          "default": null,
-          "check": null,
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "comment": null
-        },
         "status": {
           "name": "status",
           "type": "staff_status",
@@ -151,6 +141,16 @@
           "primary": false,
           "unique": false,
           "notNull": true,
+          "comment": null
+        },
+        "joined_at": {
+          "name": "joined_at",
+          "type": "date",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
           "comment": null
         },
         "left_at": {
@@ -216,7 +216,33 @@
       },
       "comment": null,
       "indexes": {},
-      "constraints": {}
+      "constraints": {
+        "PRIMARY_id": {
+          "name": "PRIMARY_id",
+          "type": "PRIMARY KEY",
+          "columnName": "id"
+        },
+        "UNIQUE_staff_id": {
+          "name": "UNIQUE_staff_id",
+          "type": "UNIQUE",
+          "columnName": "staff_id"
+        },
+        "UNIQUE_pen_name": {
+          "name": "UNIQUE_pen_name",
+          "type": "UNIQUE",
+          "columnName": "pen_name"
+        },
+        "UNIQUE_email": {
+          "name": "UNIQUE_email",
+          "type": "UNIQUE",
+          "columnName": "email"
+        },
+        "CHECK_role": {
+          "name": "CHECK_role",
+          "type": "CHECK",
+          "detail": "CHECK (role IN ('admin', 'editor', 'staff'))"
+        }
+      }
     },
     "articles_categories": {
       "name": "articles_categories",
@@ -284,7 +310,27 @@
       },
       "comment": null,
       "indexes": {},
-      "constraints": {}
+      "constraints": {
+        "PRIMARY_id": {
+          "name": "PRIMARY_id",
+          "type": "PRIMARY KEY",
+          "columnName": "id"
+        },
+        "UNIQUE_slug": {
+          "name": "UNIQUE_slug",
+          "type": "UNIQUE",
+          "columnName": "slug"
+        },
+        "articles_categories_id_to_articles_categories_parent_id": {
+          "type": "FOREIGN KEY",
+          "name": "articles_categories_id_to_articles_categories_parent_id",
+          "columnName": "parent_id",
+          "targetTableName": "articles_categories",
+          "targetColumnName": "id",
+          "updateConstraint": "NO_ACTION",
+          "deleteConstraint": "SET_NULL"
+        }
+      }
     },
     "articles": {
       "name": "articles",
@@ -306,6 +352,16 @@
           "check": null,
           "primary": false,
           "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -339,8 +395,8 @@
           "notNull": true,
           "comment": null
         },
-        "published_on": {
-          "name": "published_on",
+        "published_at": {
+          "name": "published_at",
           "type": "timestamp",
           "default": null,
           "check": null,
@@ -351,6 +407,26 @@
         },
         "is_live": {
           "name": "is_live",
+          "type": "bool",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "article_series": {
+          "name": "article_series",
+          "type": "int4",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "is_header": {
+          "name": "is_header",
           "type": "bool",
           "default": null,
           "check": null,
@@ -409,9 +485,29 @@
           "notNull": false,
           "comment": null
         },
+        "thumbnail_caption": {
+          "name": "thumbnail_caption",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
         "thumbnail_artist": {
           "name": "thumbnail_artist",
           "type": "int4",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "add_to_ticker": {
+          "name": "add_to_ticker",
+          "type": "bool",
           "default": null,
           "check": null,
           "primary": false,
@@ -462,7 +558,63 @@
       },
       "comment": null,
       "indexes": {},
-      "constraints": {}
+      "constraints": {
+        "PRIMARY_id": {
+          "name": "PRIMARY_id",
+          "type": "PRIMARY KEY",
+          "columnName": "id"
+        },
+        "UNIQUE_slug": {
+          "name": "UNIQUE_slug",
+          "type": "UNIQUE",
+          "columnName": "slug"
+        },
+        "articles_categories_id_to_articles_category_id": {
+          "type": "FOREIGN KEY",
+          "name": "articles_categories_id_to_articles_category_id",
+          "columnName": "category_id",
+          "targetTableName": "articles_categories",
+          "targetColumnName": "id",
+          "updateConstraint": "NO_ACTION",
+          "deleteConstraint": "CASCADE"
+        },
+        "staffs_id_to_articles_writer_id": {
+          "type": "FOREIGN KEY",
+          "name": "staffs_id_to_articles_writer_id",
+          "columnName": "writer_id",
+          "targetTableName": "staffs",
+          "targetColumnName": "id",
+          "updateConstraint": "NO_ACTION",
+          "deleteConstraint": "NO_ACTION"
+        },
+        "articles_id_to_articles_article_series": {
+          "type": "FOREIGN KEY",
+          "name": "articles_id_to_articles_article_series",
+          "columnName": "article_series",
+          "targetTableName": "articles",
+          "targetColumnName": "id",
+          "updateConstraint": "NO_ACTION",
+          "deleteConstraint": "SET_NULL"
+        },
+        "staffs_id_to_articles_cover_artist": {
+          "type": "FOREIGN KEY",
+          "name": "staffs_id_to_articles_cover_artist",
+          "columnName": "cover_artist",
+          "targetTableName": "staffs",
+          "targetColumnName": "id",
+          "updateConstraint": "NO_ACTION",
+          "deleteConstraint": "NO_ACTION"
+        },
+        "staffs_id_to_articles_thumbnail_artist": {
+          "type": "FOREIGN KEY",
+          "name": "staffs_id_to_articles_thumbnail_artist",
+          "columnName": "thumbnail_artist",
+          "targetTableName": "staffs",
+          "targetColumnName": "id",
+          "updateConstraint": "NO_ACTION",
+          "deleteConstraint": "NO_ACTION"
+        }
+      }
     },
     "calendar": {
       "name": "calendar",
@@ -473,6 +625,26 @@
           "default": null,
           "check": null,
           "primary": true,
+          "unique": true,
+          "notNull": true,
+          "comment": null
+        },
+        "title": {
+          "name": "title",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "primary": false,
           "unique": true,
           "notNull": true,
           "comment": null
@@ -580,7 +752,18 @@
       },
       "comment": null,
       "indexes": {},
-      "constraints": {}
+      "constraints": {
+        "PRIMARY_id": {
+          "name": "PRIMARY_id",
+          "type": "PRIMARY KEY",
+          "columnName": "id"
+        },
+        "UNIQUE_slug": {
+          "name": "UNIQUE_slug",
+          "type": "UNIQUE",
+          "columnName": "slug"
+        }
+      }
     },
     "bulletin": {
       "name": "bulletin",
@@ -591,6 +774,26 @@
           "default": null,
           "check": null,
           "primary": true,
+          "unique": true,
+          "notNull": true,
+          "comment": null
+        },
+        "title": {
+          "name": "title",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "primary": false,
           "unique": true,
           "notNull": true,
           "comment": null
@@ -688,7 +891,36 @@
       },
       "comment": null,
       "indexes": {},
-      "constraints": {}
+      "constraints": {
+        "PRIMARY_id": {
+          "name": "PRIMARY_id",
+          "type": "PRIMARY KEY",
+          "columnName": "id"
+        },
+        "UNIQUE_slug": {
+          "name": "UNIQUE_slug",
+          "type": "UNIQUE",
+          "columnName": "slug"
+        },
+        "staffs_id_to_bulletin_writer_id": {
+          "type": "FOREIGN KEY",
+          "name": "staffs_id_to_bulletin_writer_id",
+          "columnName": "writer_id",
+          "targetTableName": "staffs",
+          "targetColumnName": "id",
+          "updateConstraint": "NO_ACTION",
+          "deleteConstraint": "NO_ACTION"
+        },
+        "staffs_id_to_bulletin_cover_artist": {
+          "type": "FOREIGN KEY",
+          "name": "staffs_id_to_bulletin_cover_artist",
+          "columnName": "cover_artist",
+          "targetTableName": "staffs",
+          "targetColumnName": "id",
+          "updateConstraint": "NO_ACTION",
+          "deleteConstraint": "NO_ACTION"
+        }
+      }
     },
     "multimedia": {
       "name": "multimedia",
@@ -711,6 +943,16 @@
           "primary": false,
           "unique": false,
           "notNull": false,
+          "comment": null
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": true,
+          "notNull": true,
           "comment": null
         },
         "category": {
@@ -816,7 +1058,36 @@
       },
       "comment": null,
       "indexes": {},
-      "constraints": {}
+      "constraints": {
+        "PRIMARY_id": {
+          "name": "PRIMARY_id",
+          "type": "PRIMARY KEY",
+          "columnName": "id"
+        },
+        "UNIQUE_slug": {
+          "name": "UNIQUE_slug",
+          "type": "UNIQUE",
+          "columnName": "slug"
+        },
+        "staffs_id_to_multimedia_multimedia_artist": {
+          "type": "FOREIGN KEY",
+          "name": "staffs_id_to_multimedia_multimedia_artist",
+          "columnName": "multimedia_artist",
+          "targetTableName": "staffs",
+          "targetColumnName": "id",
+          "updateConstraint": "NO_ACTION",
+          "deleteConstraint": "NO_ACTION"
+        },
+        "staffs_id_to_multimedia_thumbnail_artist": {
+          "type": "FOREIGN KEY",
+          "name": "staffs_id_to_multimedia_thumbnail_artist",
+          "columnName": "thumbnail_artist",
+          "targetTableName": "staffs",
+          "targetColumnName": "id",
+          "updateConstraint": "NO_ACTION",
+          "deleteConstraint": "NO_ACTION"
+        }
+      }
     },
     "issues": {
       "name": "issues",
@@ -838,6 +1109,16 @@
           "check": null,
           "primary": false,
           "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -1014,7 +1295,18 @@
       },
       "comment": null,
       "indexes": {},
-      "constraints": {}
+      "constraints": {
+        "PRIMARY_issue_id": {
+          "name": "PRIMARY_issue_id",
+          "type": "PRIMARY KEY",
+          "columnName": "issue_id"
+        },
+        "UNIQUE_slug": {
+          "name": "UNIQUE_slug",
+          "type": "UNIQUE",
+          "columnName": "slug"
+        }
+      }
     },
     "editorial_boards": {
       "name": "editorial_boards",
@@ -1029,16 +1321,6 @@
           "notNull": true,
           "comment": null
         },
-        "staff_id": {
-          "name": "staff_id",
-          "type": "int4",
-          "default": null,
-          "check": null,
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "comment": null
-        },
         "term": {
           "name": "term",
           "type": "varchar",
@@ -1047,6 +1329,16 @@
           "primary": false,
           "unique": false,
           "notNull": true,
+          "comment": null
+        },
+        "staff_id": {
+          "name": "staff_id",
+          "type": "int4",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": false,
+          "notNull": false,
           "comment": null
         },
         "role": {
@@ -1072,7 +1364,22 @@
       },
       "comment": null,
       "indexes": {},
-      "constraints": {}
+      "constraints": {
+        "PRIMARY_id": {
+          "name": "PRIMARY_id",
+          "type": "PRIMARY KEY",
+          "columnName": "id"
+        },
+        "staffs_id_to_editorial_boards_staff_id": {
+          "type": "FOREIGN KEY",
+          "name": "staffs_id_to_editorial_boards_staff_id",
+          "columnName": "staff_id",
+          "targetTableName": "staffs",
+          "targetColumnName": "id",
+          "updateConstraint": "NO_ACTION",
+          "deleteConstraint": "CASCADE"
+        }
+      }
     },
     "community_segments": {
       "name": "community_segments",
@@ -1094,6 +1401,16 @@
           "check": null,
           "primary": false,
           "unique": false,
+          "notNull": true,
+          "comment": null
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -1210,7 +1527,36 @@
       },
       "comment": null,
       "indexes": {},
-      "constraints": {}
+      "constraints": {
+        "PRIMARY_id": {
+          "name": "PRIMARY_id",
+          "type": "PRIMARY KEY",
+          "columnName": "id"
+        },
+        "UNIQUE_slug": {
+          "name": "UNIQUE_slug",
+          "type": "UNIQUE",
+          "columnName": "slug"
+        },
+        "staffs_id_to_community_segments_writer_id": {
+          "type": "FOREIGN KEY",
+          "name": "staffs_id_to_community_segments_writer_id",
+          "columnName": "writer_id",
+          "targetTableName": "staffs",
+          "targetColumnName": "id",
+          "updateConstraint": "NO_ACTION",
+          "deleteConstraint": "NO_ACTION"
+        },
+        "staffs_id_to_community_segments_cover_artist": {
+          "type": "FOREIGN KEY",
+          "name": "staffs_id_to_community_segments_cover_artist",
+          "columnName": "cover_artist",
+          "targetTableName": "staffs",
+          "targetColumnName": "id",
+          "updateConstraint": "NO_ACTION",
+          "deleteConstraint": "NO_ACTION"
+        }
+      }
     },
     "segments_poll": {
       "name": "segments_poll",
@@ -1258,7 +1604,22 @@
       },
       "comment": null,
       "indexes": {},
-      "constraints": {}
+      "constraints": {
+        "community_segments_id_to_segments_poll_segment_id": {
+          "type": "FOREIGN KEY",
+          "name": "community_segments_id_to_segments_poll_segment_id",
+          "columnName": "segment_id",
+          "targetTableName": "community_segments",
+          "targetColumnName": "id",
+          "updateConstraint": "NO_ACTION",
+          "deleteConstraint": "CASCADE"
+        },
+        "PRIMARY_segment_id": {
+          "name": "PRIMARY_segment_id",
+          "type": "PRIMARY KEY",
+          "columnName": "segment_id"
+        }
+      }
     },
     "segments_article": {
       "name": "segments_article",
@@ -1286,7 +1647,22 @@
       },
       "comment": null,
       "indexes": {},
-      "constraints": {}
+      "constraints": {
+        "community_segments_id_to_segments_article_segment_id": {
+          "type": "FOREIGN KEY",
+          "name": "community_segments_id_to_segments_article_segment_id",
+          "columnName": "segment_id",
+          "targetTableName": "community_segments",
+          "targetColumnName": "id",
+          "updateConstraint": "NO_ACTION",
+          "deleteConstraint": "CASCADE"
+        },
+        "PRIMARY_segment_id": {
+          "name": "PRIMARY_segment_id",
+          "type": "PRIMARY KEY",
+          "columnName": "segment_id"
+        }
+      }
     },
     "newsletter": {
       "name": "newsletter",
@@ -1334,7 +1710,13 @@
       },
       "comment": null,
       "indexes": {},
-      "constraints": {}
+      "constraints": {
+        "PRIMARY_id": {
+          "name": "PRIMARY_id",
+          "type": "PRIMARY KEY",
+          "columnName": "id"
+        }
+      }
     }
   },
   "relationships": {
@@ -1367,6 +1749,16 @@
       "cardinality": "ONE_TO_MANY",
       "updateConstraint": "NO_ACTION",
       "deleteConstraint": "NO_ACTION"
+    },
+    "articles_id_to_articles_article_series": {
+      "name": "articles_id_to_articles_article_series",
+      "primaryTableName": "articles",
+      "primaryColumnName": "id",
+      "foreignTableName": "articles",
+      "foreignColumnName": "article_series",
+      "cardinality": "ONE_TO_MANY",
+      "updateConstraint": "NO_ACTION",
+      "deleteConstraint": "SET_NULL"
     },
     "staffs_id_to_articles_cover_artist": {
       "name": "staffs_id_to_articles_cover_artist",
