@@ -8,6 +8,7 @@ CREATE TYPE archive_category AS ENUM ('article', 'multimedia', 'issues', 'ed_boa
 CREATE TABLE staffs (
     id SERIAL PRIMARY KEY,
     staff_id VARCHAR(100) UNIQUE NOT NULL, 
+    slug TEXT UNIQUE NOT NULL,
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL,
     full_name VARCHAR(200) GENERATED ALWAYS AS (first_name || ' ' || last_name) STORED,

@@ -23,6 +23,16 @@
           "notNull": true,
           "comment": null
         },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": true,
+          "notNull": true,
+          "comment": null
+        },
         "first_name": {
           "name": "first_name",
           "type": "varchar",
@@ -226,6 +236,11 @@
           "name": "UNIQUE_staff_id",
           "type": "UNIQUE",
           "columnName": "staff_id"
+        },
+        "UNIQUE_slug": {
+          "name": "UNIQUE_slug",
+          "type": "UNIQUE",
+          "columnName": "slug"
         },
         "UNIQUE_pen_name": {
           "name": "UNIQUE_pen_name",
