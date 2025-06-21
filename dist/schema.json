@@ -23,16 +23,6 @@
           "notNull": true,
           "comment": null
         },
-        "slug": {
-          "name": "slug",
-          "type": "text",
-          "default": null,
-          "check": null,
-          "primary": false,
-          "unique": true,
-          "notNull": true,
-          "comment": null
-        },
         "first_name": {
           "name": "first_name",
           "type": "varchar",
@@ -63,9 +53,29 @@
           "notNull": false,
           "comment": null
         },
+        "full_name_slug": {
+          "name": "full_name_slug",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": true,
+          "notNull": true,
+          "comment": null
+        },
         "pen_name": {
           "name": "pen_name",
           "type": "varchar",
+          "default": null,
+          "check": null,
+          "primary": false,
+          "unique": true,
+          "notNull": true,
+          "comment": null
+        },
+        "pen_name_slug": {
+          "name": "pen_name_slug",
+          "type": "text",
           "default": null,
           "check": null,
           "primary": false,
@@ -237,15 +247,20 @@
           "type": "UNIQUE",
           "columnName": "staff_id"
         },
-        "UNIQUE_slug": {
-          "name": "UNIQUE_slug",
+        "UNIQUE_full_name_slug": {
+          "name": "UNIQUE_full_name_slug",
           "type": "UNIQUE",
-          "columnName": "slug"
+          "columnName": "full_name_slug"
         },
         "UNIQUE_pen_name": {
           "name": "UNIQUE_pen_name",
           "type": "UNIQUE",
           "columnName": "pen_name"
+        },
+        "UNIQUE_pen_name_slug": {
+          "name": "UNIQUE_pen_name_slug",
+          "type": "UNIQUE",
+          "columnName": "pen_name_slug"
         },
         "UNIQUE_email": {
           "name": "UNIQUE_email",
