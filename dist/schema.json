@@ -8,8 +8,6 @@
           "type": "serial",
           "default": null,
           "check": null,
-          "primary": true,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -18,8 +16,6 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -28,8 +24,6 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -38,8 +32,6 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -48,8 +40,6 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -58,8 +48,6 @@
           "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -68,8 +56,6 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -78,8 +64,6 @@
           "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -88,8 +72,6 @@
           "type": "int4",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -98,8 +80,6 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -108,8 +88,6 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -118,8 +96,6 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -128,8 +104,6 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -138,8 +112,6 @@
           "type": "varchar",
           "default": "staff",
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -148,8 +120,6 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -158,8 +128,6 @@
           "type": "staff_status",
           "default": "active",
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -168,8 +136,6 @@
           "type": "date",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -178,8 +144,6 @@
           "type": "date",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -188,8 +152,6 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -198,8 +160,6 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -208,8 +168,6 @@
           "type": "timestamp",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -218,8 +176,6 @@
           "type": "timestamp",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -228,8 +184,6 @@
           "type": "timestamp",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         }
@@ -282,8 +236,6 @@
           "type": "serial",
           "default": null,
           "check": null,
-          "primary": true,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -292,8 +244,6 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -302,8 +252,6 @@
           "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -312,8 +260,6 @@
           "type": "int4",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -322,8 +268,6 @@
           "type": "timestamp",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -332,8 +276,6 @@
           "type": "timestamp",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         }
@@ -370,8 +312,6 @@
           "type": "serial",
           "default": null,
           "check": null,
-          "primary": true,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -380,8 +320,6 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -390,8 +328,6 @@
           "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -400,8 +336,6 @@
           "type": "int4",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -410,8 +344,6 @@
           "type": "int4",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -420,8 +352,6 @@
           "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -430,8 +360,6 @@
           "type": "timestamp",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -440,8 +368,6 @@
           "type": "bool",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -450,8 +376,6 @@
           "type": "int4",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -460,8 +384,6 @@
           "type": "bool",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -470,8 +392,6 @@
           "type": "bool",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -480,8 +400,6 @@
           "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -490,8 +408,6 @@
           "type": "int4",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -500,8 +416,6 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -510,8 +424,6 @@
           "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -520,8 +432,6 @@
           "type": "int4",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -530,8 +440,6 @@
           "type": "bool",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -540,8 +448,6 @@
           "type": "timestamp",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -550,8 +456,6 @@
           "type": "timestamp",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -560,8 +464,6 @@
           "type": "timestamp",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -570,8 +472,6 @@
           "type": "timestamp",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         }
@@ -644,8 +544,6 @@
           "type": "serial",
           "default": null,
           "check": null,
-          "primary": true,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -654,8 +552,6 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -664,8 +560,6 @@
           "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -674,8 +568,6 @@
           "type": "timestamp",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -684,8 +576,6 @@
           "type": "timestamp",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -694,8 +584,6 @@
           "type": "bool",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -704,8 +592,6 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -714,8 +600,6 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -724,8 +608,6 @@
           "type": "bool",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -734,8 +616,6 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -744,8 +624,6 @@
           "type": "timestamp",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -754,8 +632,6 @@
           "type": "timestamp",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -764,8 +640,6 @@
           "type": "timestamp",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         }
@@ -793,8 +667,6 @@
           "type": "serial",
           "default": null,
           "check": null,
-          "primary": true,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -803,8 +675,6 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -813,8 +683,6 @@
           "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -823,8 +691,6 @@
           "type": "timestamp",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -833,8 +699,6 @@
           "type": "bulletin_category",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -843,8 +707,6 @@
           "type": "int4",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -853,8 +715,6 @@
           "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -863,8 +723,6 @@
           "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -873,8 +731,6 @@
           "type": "int4",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -883,8 +739,6 @@
           "type": "timestamp",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -893,8 +747,6 @@
           "type": "timestamp",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -903,8 +755,6 @@
           "type": "timestamp",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         }
@@ -950,8 +800,6 @@
           "type": "serial",
           "default": null,
           "check": null,
-          "primary": true,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -960,8 +808,6 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -970,8 +816,6 @@
           "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -980,8 +824,6 @@
           "type": "multimedia_category",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -990,8 +832,6 @@
           "type": "timestamp",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -1000,8 +840,6 @@
           "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -1010,8 +848,6 @@
           "type": "int4",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -1020,8 +856,6 @@
           "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -1030,8 +864,6 @@
           "type": "int4",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -1040,8 +872,6 @@
           "type": "timestamp",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -1050,8 +880,6 @@
           "type": "timestamp",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -1060,8 +888,6 @@
           "type": "timestamp",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -1070,8 +896,6 @@
           "type": "timestamp",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         }
@@ -1117,8 +941,6 @@
           "type": "serial",
           "default": null,
           "check": null,
-          "primary": true,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -1127,8 +949,6 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -1137,8 +957,6 @@
           "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -1147,8 +965,6 @@
           "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -1157,8 +973,6 @@
           "type": "date",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -1167,8 +981,6 @@
           "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -1177,8 +989,6 @@
           "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -1187,8 +997,6 @@
           "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -1197,8 +1005,6 @@
           "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -1207,8 +1013,6 @@
           "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -1217,8 +1021,6 @@
           "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -1227,8 +1029,6 @@
           "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -1237,8 +1037,6 @@
           "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -1247,8 +1045,6 @@
           "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -1257,8 +1053,6 @@
           "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -1267,8 +1061,6 @@
           "type": "bool",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -1277,8 +1069,6 @@
           "type": "timestamp",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -1287,8 +1077,6 @@
           "type": "timestamp",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -1297,8 +1085,6 @@
           "type": "timestamp",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -1307,8 +1093,6 @@
           "type": "timestamp",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         }
@@ -1336,8 +1120,6 @@
           "type": "serial",
           "default": null,
           "check": null,
-          "primary": true,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -1346,8 +1128,6 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -1356,8 +1136,6 @@
           "type": "int4",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -1366,8 +1144,6 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -1376,8 +1152,6 @@
           "type": "timestamp",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         }
@@ -1409,8 +1183,6 @@
           "type": "serial",
           "default": null,
           "check": null,
-          "primary": true,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -1419,8 +1191,6 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -1429,8 +1199,6 @@
           "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -1439,8 +1207,6 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -1449,8 +1215,6 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -1459,8 +1223,6 @@
           "type": "int4",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -1469,8 +1231,6 @@
           "type": "int4",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -1479,8 +1239,6 @@
           "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -1489,8 +1247,6 @@
           "type": "int4",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -1499,8 +1255,6 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -1509,8 +1263,6 @@
           "type": "timestamp",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -1519,8 +1271,6 @@
           "type": "timestamp",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -1529,8 +1279,6 @@
           "type": "timestamp",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -1539,8 +1287,6 @@
           "type": "timestamp",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         }
@@ -1586,8 +1332,6 @@
           "type": "serial",
           "default": null,
           "check": null,
-          "primary": true,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -1596,8 +1340,6 @@
           "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -1606,8 +1348,6 @@
           "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -1616,8 +1356,6 @@
           "type": "interval",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         }
@@ -1649,8 +1387,6 @@
           "type": "serial",
           "default": null,
           "check": null,
-          "primary": true,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -1659,8 +1395,6 @@
           "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         }
@@ -1692,8 +1426,6 @@
           "type": "serial",
           "default": null,
           "check": null,
-          "primary": true,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -1702,8 +1434,6 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -1712,8 +1442,6 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -1722,8 +1450,6 @@
           "type": "timestamp",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         }
@@ -1737,159 +1463,61 @@
           "columnName": "id"
         }
       }
+    },
+    "terms": {
+      "name": "terms",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "default": null,
+          "check": null,
+          "notNull": true,
+          "comment": null
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "int4",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "term": {
+          "name": "term",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "time_stamp": {
+          "name": "time_stamp",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        }
+      },
+      "comment": null,
+      "indexes": {},
+      "constraints": {
+        "PRIMARY_id": {
+          "name": "PRIMARY_id",
+          "type": "PRIMARY KEY",
+          "columnName": "id"
+        },
+        "staffs_id_to_terms_user_id": {
+          "type": "FOREIGN KEY",
+          "name": "staffs_id_to_terms_user_id",
+          "columnName": "user_id",
+          "targetTableName": "staffs",
+          "targetColumnName": "id",
+          "updateConstraint": "NO_ACTION",
+          "deleteConstraint": "SET_NULL"
+        }
+      }
     }
-  },
-  "relationships": {
-    "articles_categories_id_to_articles_categories_parent_id": {
-      "name": "articles_categories_id_to_articles_categories_parent_id",
-      "primaryTableName": "articles_categories",
-      "primaryColumnName": "id",
-      "foreignTableName": "articles_categories",
-      "foreignColumnName": "parent_id",
-      "cardinality": "ONE_TO_MANY",
-      "updateConstraint": "NO_ACTION",
-      "deleteConstraint": "SET_NULL"
-    },
-    "articles_categories_id_to_articles_category_id": {
-      "name": "articles_categories_id_to_articles_category_id",
-      "primaryTableName": "articles_categories",
-      "primaryColumnName": "id",
-      "foreignTableName": "articles",
-      "foreignColumnName": "category_id",
-      "cardinality": "ONE_TO_MANY",
-      "updateConstraint": "NO_ACTION",
-      "deleteConstraint": "CASCADE"
-    },
-    "staffs_id_to_articles_writer_id": {
-      "name": "staffs_id_to_articles_writer_id",
-      "primaryTableName": "staffs",
-      "primaryColumnName": "id",
-      "foreignTableName": "articles",
-      "foreignColumnName": "writer_id",
-      "cardinality": "ONE_TO_MANY",
-      "updateConstraint": "NO_ACTION",
-      "deleteConstraint": "NO_ACTION"
-    },
-    "articles_id_to_articles_article_series": {
-      "name": "articles_id_to_articles_article_series",
-      "primaryTableName": "articles",
-      "primaryColumnName": "id",
-      "foreignTableName": "articles",
-      "foreignColumnName": "article_series",
-      "cardinality": "ONE_TO_MANY",
-      "updateConstraint": "NO_ACTION",
-      "deleteConstraint": "SET_NULL"
-    },
-    "staffs_id_to_articles_cover_artist": {
-      "name": "staffs_id_to_articles_cover_artist",
-      "primaryTableName": "staffs",
-      "primaryColumnName": "id",
-      "foreignTableName": "articles",
-      "foreignColumnName": "cover_artist",
-      "cardinality": "ONE_TO_MANY",
-      "updateConstraint": "NO_ACTION",
-      "deleteConstraint": "NO_ACTION"
-    },
-    "staffs_id_to_articles_thumbnail_artist": {
-      "name": "staffs_id_to_articles_thumbnail_artist",
-      "primaryTableName": "staffs",
-      "primaryColumnName": "id",
-      "foreignTableName": "articles",
-      "foreignColumnName": "thumbnail_artist",
-      "cardinality": "ONE_TO_MANY",
-      "updateConstraint": "NO_ACTION",
-      "deleteConstraint": "NO_ACTION"
-    },
-    "staffs_id_to_bulletin_writer_id": {
-      "name": "staffs_id_to_bulletin_writer_id",
-      "primaryTableName": "staffs",
-      "primaryColumnName": "id",
-      "foreignTableName": "bulletin",
-      "foreignColumnName": "writer_id",
-      "cardinality": "ONE_TO_MANY",
-      "updateConstraint": "NO_ACTION",
-      "deleteConstraint": "NO_ACTION"
-    },
-    "staffs_id_to_bulletin_cover_artist": {
-      "name": "staffs_id_to_bulletin_cover_artist",
-      "primaryTableName": "staffs",
-      "primaryColumnName": "id",
-      "foreignTableName": "bulletin",
-      "foreignColumnName": "cover_artist",
-      "cardinality": "ONE_TO_MANY",
-      "updateConstraint": "NO_ACTION",
-      "deleteConstraint": "NO_ACTION"
-    },
-    "staffs_id_to_multimedia_multimedia_artist": {
-      "name": "staffs_id_to_multimedia_multimedia_artist",
-      "primaryTableName": "staffs",
-      "primaryColumnName": "id",
-      "foreignTableName": "multimedia",
-      "foreignColumnName": "multimedia_artist",
-      "cardinality": "ONE_TO_MANY",
-      "updateConstraint": "NO_ACTION",
-      "deleteConstraint": "NO_ACTION"
-    },
-    "staffs_id_to_multimedia_thumbnail_artist": {
-      "name": "staffs_id_to_multimedia_thumbnail_artist",
-      "primaryTableName": "staffs",
-      "primaryColumnName": "id",
-      "foreignTableName": "multimedia",
-      "foreignColumnName": "thumbnail_artist",
-      "cardinality": "ONE_TO_MANY",
-      "updateConstraint": "NO_ACTION",
-      "deleteConstraint": "NO_ACTION"
-    },
-    "staffs_id_to_editorial_boards_staff_id": {
-      "name": "staffs_id_to_editorial_boards_staff_id",
-      "primaryTableName": "staffs",
-      "primaryColumnName": "id",
-      "foreignTableName": "editorial_boards",
-      "foreignColumnName": "staff_id",
-      "cardinality": "ONE_TO_MANY",
-      "updateConstraint": "NO_ACTION",
-      "deleteConstraint": "CASCADE"
-    },
-    "staffs_id_to_community_segments_writer_id": {
-      "name": "staffs_id_to_community_segments_writer_id",
-      "primaryTableName": "staffs",
-      "primaryColumnName": "id",
-      "foreignTableName": "community_segments",
-      "foreignColumnName": "writer_id",
-      "cardinality": "ONE_TO_MANY",
-      "updateConstraint": "NO_ACTION",
-      "deleteConstraint": "NO_ACTION"
-    },
-    "staffs_id_to_community_segments_cover_artist": {
-      "name": "staffs_id_to_community_segments_cover_artist",
-      "primaryTableName": "staffs",
-      "primaryColumnName": "id",
-      "foreignTableName": "community_segments",
-      "foreignColumnName": "cover_artist",
-      "cardinality": "ONE_TO_MANY",
-      "updateConstraint": "NO_ACTION",
-      "deleteConstraint": "NO_ACTION"
-    },
-    "community_segments_id_to_segments_poll_segment_id": {
-      "name": "community_segments_id_to_segments_poll_segment_id",
-      "primaryTableName": "community_segments",
-      "primaryColumnName": "id",
-      "foreignTableName": "segments_poll",
-      "foreignColumnName": "segment_id",
-      "cardinality": "ONE_TO_ONE",
-      "updateConstraint": "NO_ACTION",
-      "deleteConstraint": "CASCADE"
-    },
-    "community_segments_id_to_segments_article_segment_id": {
-      "name": "community_segments_id_to_segments_article_segment_id",
-      "primaryTableName": "community_segments",
-      "primaryColumnName": "id",
-      "foreignTableName": "segments_article",
-      "foreignColumnName": "segment_id",
-      "cardinality": "ONE_TO_ONE",
-      "updateConstraint": "NO_ACTION",
-      "deleteConstraint": "CASCADE"
-    }
-  },
-  "tableGroups": {}
+  }
 }

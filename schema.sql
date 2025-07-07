@@ -194,3 +194,11 @@ CREATE TABLE newsletter (
 );
 
 
+CREATE TABLE terms (
+    id SERIAL PRIMARY KEY, 
+    user_id INTEGER REFERENCES staffs(id) ON DELETE SET NULL, 
+    term VARCHAR,
+    time_stamp TIMESTAMP
+);
+
+
