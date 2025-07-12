@@ -32,11 +32,22 @@ CREATE TABLE staffs (
     --UNIQUE(pen_name, email)
 );
 
--- CREATE TABLE staff_roles (
---     id SERIAL PRIMARY KEY,
---     name VARCHAR(100) NOT NULL, 
---     role_desc TEXT
--- );
+
+CREATE TABLE editorial_boards (
+    id SERIAL PRIMARY KEY,
+    term VARCHAR(100) NOT NULL, --2024-2025...
+    staff_id INTEGER REFERENCES staffs(id) ON DELETE CASCADE,
+    role VARCHAR(100) NOT NULL,
+    archived_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE terms (
+    id SERIAL PRIMARY KEY, 
+    user_id INTEGER REFERENCES staffs(id) ON DELETE SET NULL, 
+    term VARCHAR,
+    time_stamp TIMESTAMP
+);
 
 -- Categories table
 CREATE TABLE articles_categories (
@@ -149,20 +160,15 @@ CREATE TABLE issues (
 );
 
 --data inserted with the staff creation form
-CREATE TABLE editorial_boards (
-    id SERIAL PRIMARY KEY,
-    term VARCHAR(100) NOT NULL, --2024-2025...
-    staff_id INTEGER REFERENCES staffs(id) ON DELETE CASCADE,
-    role VARCHAR(100) NOT NULL,
-    archived_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+
+
 
 CREATE TABLE community_segments (
     id SERIAL PRIMARY KEY, 
     title VARCHAR(255) NOT NULL,
     slug TEXT UNIQUE NOT NULL,
-    segment_type VARCHAR(50), -- article or poll
-    series_of VARCHAR(255) NOT NULL,
+    segment_type VARCHAR(50) CHECK (segment_type IN ('article', 'poll')), -- article or poll
+    series_of INTEGER REFERENCES community_segments(id),
     writer_id INTEGER REFERENCES staffs(id) NOT NULL,
     series_order INT NULL,
     segment_cover TEXT NOT NULL, -- path 
@@ -174,17 +180,19 @@ CREATE TABLE community_segments (
     archived_at TIMESTAMP 
 );
 
+
 CREATE TABLE segments_poll (
-    segment_id SERIAL PRIMARY KEY REFERENCES community_segments(id) ON DELETE CASCADE, 
+    segment_id INTEGER PRIMARY KEY REFERENCES community_segments(id) ON DELETE CASCADE, 
     question TEXT NOT NULL,
     options TEXT[] NOT NULL,
     duration INTERVAL NOT NULL
 );
 
 CREATE TABLE segments_article (
-    segment_id SERIAL PRIMARY KEY REFERENCES community_segments(id) ON DELETE CASCADE,
+    segment_id INTEGER PRIMARY KEY REFERENCES community_segments(id) ON DELETE CASCADE,
     body TEXT NULL
 );
+
 
 CREATE TABLE newsletter (
     id SERIAL PRIMARY KEY,
@@ -194,11 +202,6 @@ CREATE TABLE newsletter (
 );
 
 
-CREATE TABLE terms (
-    id SERIAL PRIMARY KEY, 
-    user_id INTEGER REFERENCES staffs(id) ON DELETE SET NULL, 
-    term VARCHAR,
-    time_stamp TIMESTAMP
-);
+
 
 

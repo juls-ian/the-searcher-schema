@@ -194,37 +194,171 @@
         "PRIMARY_id": {
           "name": "PRIMARY_id",
           "type": "PRIMARY KEY",
-          "columnName": "id"
+          "columnNames": [
+            "id"
+          ]
         },
         "UNIQUE_staff_id": {
           "name": "UNIQUE_staff_id",
           "type": "UNIQUE",
-          "columnName": "staff_id"
+          "columnNames": [
+            "staff_id"
+          ]
         },
         "UNIQUE_full_name_slug": {
           "name": "UNIQUE_full_name_slug",
           "type": "UNIQUE",
-          "columnName": "full_name_slug"
+          "columnNames": [
+            "full_name_slug"
+          ]
         },
         "UNIQUE_pen_name": {
           "name": "UNIQUE_pen_name",
           "type": "UNIQUE",
-          "columnName": "pen_name"
+          "columnNames": [
+            "pen_name"
+          ]
         },
         "UNIQUE_pen_name_slug": {
           "name": "UNIQUE_pen_name_slug",
           "type": "UNIQUE",
-          "columnName": "pen_name_slug"
+          "columnNames": [
+            "pen_name_slug"
+          ]
         },
         "UNIQUE_email": {
           "name": "UNIQUE_email",
           "type": "UNIQUE",
-          "columnName": "email"
+          "columnNames": [
+            "email"
+          ]
         },
         "CHECK_role": {
           "name": "CHECK_role",
           "type": "CHECK",
           "detail": "CHECK (role IN ('admin', 'editor', 'staff'))"
+        }
+      }
+    },
+    "editorial_boards": {
+      "name": "editorial_boards",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "default": null,
+          "check": null,
+          "notNull": true,
+          "comment": null
+        },
+        "term": {
+          "name": "term",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "notNull": true,
+          "comment": null
+        },
+        "staff_id": {
+          "name": "staff_id",
+          "type": "int4",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "role": {
+          "name": "role",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "notNull": true,
+          "comment": null
+        },
+        "archived_at": {
+          "name": "archived_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        }
+      },
+      "comment": null,
+      "indexes": {},
+      "constraints": {
+        "PRIMARY_id": {
+          "name": "PRIMARY_id",
+          "type": "PRIMARY KEY",
+          "columnNames": [
+            "id"
+          ]
+        },
+        "staffs_id_to_editorial_boards_staff_id": {
+          "type": "FOREIGN KEY",
+          "name": "staffs_id_to_editorial_boards_staff_id",
+          "columnName": "staff_id",
+          "targetTableName": "staffs",
+          "targetColumnName": "id",
+          "updateConstraint": "NO_ACTION",
+          "deleteConstraint": "CASCADE"
+        }
+      }
+    },
+    "terms": {
+      "name": "terms",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "default": null,
+          "check": null,
+          "notNull": true,
+          "comment": null
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "int4",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "term": {
+          "name": "term",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "time_stamp": {
+          "name": "time_stamp",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        }
+      },
+      "comment": null,
+      "indexes": {},
+      "constraints": {
+        "PRIMARY_id": {
+          "name": "PRIMARY_id",
+          "type": "PRIMARY KEY",
+          "columnNames": [
+            "id"
+          ]
+        },
+        "staffs_id_to_terms_user_id": {
+          "type": "FOREIGN KEY",
+          "name": "staffs_id_to_terms_user_id",
+          "columnName": "user_id",
+          "targetTableName": "staffs",
+          "targetColumnName": "id",
+          "updateConstraint": "NO_ACTION",
+          "deleteConstraint": "SET_NULL"
         }
       }
     },
@@ -286,12 +420,16 @@
         "PRIMARY_id": {
           "name": "PRIMARY_id",
           "type": "PRIMARY KEY",
-          "columnName": "id"
+          "columnNames": [
+            "id"
+          ]
         },
         "UNIQUE_slug": {
           "name": "UNIQUE_slug",
           "type": "UNIQUE",
-          "columnName": "slug"
+          "columnNames": [
+            "slug"
+          ]
         },
         "articles_categories_id_to_articles_categories_parent_id": {
           "type": "FOREIGN KEY",
@@ -482,12 +620,16 @@
         "PRIMARY_id": {
           "name": "PRIMARY_id",
           "type": "PRIMARY KEY",
-          "columnName": "id"
+          "columnNames": [
+            "id"
+          ]
         },
         "UNIQUE_slug": {
           "name": "UNIQUE_slug",
           "type": "UNIQUE",
-          "columnName": "slug"
+          "columnNames": [
+            "slug"
+          ]
         },
         "articles_categories_id_to_articles_category_id": {
           "type": "FOREIGN KEY",
@@ -650,12 +792,16 @@
         "PRIMARY_id": {
           "name": "PRIMARY_id",
           "type": "PRIMARY KEY",
-          "columnName": "id"
+          "columnNames": [
+            "id"
+          ]
         },
         "UNIQUE_slug": {
           "name": "UNIQUE_slug",
           "type": "UNIQUE",
-          "columnName": "slug"
+          "columnNames": [
+            "slug"
+          ]
         }
       }
     },
@@ -765,12 +911,16 @@
         "PRIMARY_id": {
           "name": "PRIMARY_id",
           "type": "PRIMARY KEY",
-          "columnName": "id"
+          "columnNames": [
+            "id"
+          ]
         },
         "UNIQUE_slug": {
           "name": "UNIQUE_slug",
           "type": "UNIQUE",
-          "columnName": "slug"
+          "columnNames": [
+            "slug"
+          ]
         },
         "staffs_id_to_bulletin_writer_id": {
           "type": "FOREIGN KEY",
@@ -906,12 +1056,16 @@
         "PRIMARY_id": {
           "name": "PRIMARY_id",
           "type": "PRIMARY KEY",
-          "columnName": "id"
+          "columnNames": [
+            "id"
+          ]
         },
         "UNIQUE_slug": {
           "name": "UNIQUE_slug",
           "type": "UNIQUE",
-          "columnName": "slug"
+          "columnNames": [
+            "slug"
+          ]
         },
         "staffs_id_to_multimedia_multimedia_artist": {
           "type": "FOREIGN KEY",
@@ -1103,75 +1257,16 @@
         "PRIMARY_issue_id": {
           "name": "PRIMARY_issue_id",
           "type": "PRIMARY KEY",
-          "columnName": "issue_id"
+          "columnNames": [
+            "issue_id"
+          ]
         },
         "UNIQUE_slug": {
           "name": "UNIQUE_slug",
           "type": "UNIQUE",
-          "columnName": "slug"
-        }
-      }
-    },
-    "editorial_boards": {
-      "name": "editorial_boards",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "serial",
-          "default": null,
-          "check": null,
-          "notNull": true,
-          "comment": null
-        },
-        "term": {
-          "name": "term",
-          "type": "varchar",
-          "default": null,
-          "check": null,
-          "notNull": true,
-          "comment": null
-        },
-        "staff_id": {
-          "name": "staff_id",
-          "type": "int4",
-          "default": null,
-          "check": null,
-          "notNull": false,
-          "comment": null
-        },
-        "role": {
-          "name": "role",
-          "type": "varchar",
-          "default": null,
-          "check": null,
-          "notNull": true,
-          "comment": null
-        },
-        "archived_at": {
-          "name": "archived_at",
-          "type": "timestamp",
-          "default": null,
-          "check": null,
-          "notNull": false,
-          "comment": null
-        }
-      },
-      "comment": null,
-      "indexes": {},
-      "constraints": {
-        "PRIMARY_id": {
-          "name": "PRIMARY_id",
-          "type": "PRIMARY KEY",
-          "columnName": "id"
-        },
-        "staffs_id_to_editorial_boards_staff_id": {
-          "type": "FOREIGN KEY",
-          "name": "staffs_id_to_editorial_boards_staff_id",
-          "columnName": "staff_id",
-          "targetTableName": "staffs",
-          "targetColumnName": "id",
-          "updateConstraint": "NO_ACTION",
-          "deleteConstraint": "CASCADE"
+          "columnNames": [
+            "slug"
+          ]
         }
       }
     },
@@ -1212,10 +1307,10 @@
         },
         "series_of": {
           "name": "series_of",
-          "type": "varchar",
+          "type": "int4",
           "default": null,
           "check": null,
-          "notNull": true,
+          "notNull": false,
           "comment": null
         },
         "writer_id": {
@@ -1297,12 +1392,30 @@
         "PRIMARY_id": {
           "name": "PRIMARY_id",
           "type": "PRIMARY KEY",
-          "columnName": "id"
+          "columnNames": [
+            "id"
+          ]
         },
         "UNIQUE_slug": {
           "name": "UNIQUE_slug",
           "type": "UNIQUE",
-          "columnName": "slug"
+          "columnNames": [
+            "slug"
+          ]
+        },
+        "CHECK_segment_type": {
+          "name": "CHECK_segment_type",
+          "type": "CHECK",
+          "detail": "CHECK (segment_type IN ('article', 'poll'))"
+        },
+        "community_segments_id_to_community_segments_series_of": {
+          "type": "FOREIGN KEY",
+          "name": "community_segments_id_to_community_segments_series_of",
+          "columnName": "series_of",
+          "targetTableName": "community_segments",
+          "targetColumnName": "id",
+          "updateConstraint": "NO_ACTION",
+          "deleteConstraint": "NO_ACTION"
         },
         "staffs_id_to_community_segments_writer_id": {
           "type": "FOREIGN KEY",
@@ -1329,7 +1442,7 @@
       "columns": {
         "segment_id": {
           "name": "segment_id",
-          "type": "serial",
+          "type": "int4",
           "default": null,
           "check": null,
           "notNull": true,
@@ -1375,7 +1488,9 @@
         "PRIMARY_segment_id": {
           "name": "PRIMARY_segment_id",
           "type": "PRIMARY KEY",
-          "columnName": "segment_id"
+          "columnNames": [
+            "segment_id"
+          ]
         }
       }
     },
@@ -1384,7 +1499,7 @@
       "columns": {
         "segment_id": {
           "name": "segment_id",
-          "type": "serial",
+          "type": "int4",
           "default": null,
           "check": null,
           "notNull": true,
@@ -1414,7 +1529,9 @@
         "PRIMARY_segment_id": {
           "name": "PRIMARY_segment_id",
           "type": "PRIMARY KEY",
-          "columnName": "segment_id"
+          "columnNames": [
+            "segment_id"
+          ]
         }
       }
     },
@@ -1460,62 +1577,9 @@
         "PRIMARY_id": {
           "name": "PRIMARY_id",
           "type": "PRIMARY KEY",
-          "columnName": "id"
-        }
-      }
-    },
-    "terms": {
-      "name": "terms",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "serial",
-          "default": null,
-          "check": null,
-          "notNull": true,
-          "comment": null
-        },
-        "user_id": {
-          "name": "user_id",
-          "type": "int4",
-          "default": null,
-          "check": null,
-          "notNull": false,
-          "comment": null
-        },
-        "term": {
-          "name": "term",
-          "type": "varchar",
-          "default": null,
-          "check": null,
-          "notNull": false,
-          "comment": null
-        },
-        "time_stamp": {
-          "name": "time_stamp",
-          "type": "timestamp",
-          "default": null,
-          "check": null,
-          "notNull": false,
-          "comment": null
-        }
-      },
-      "comment": null,
-      "indexes": {},
-      "constraints": {
-        "PRIMARY_id": {
-          "name": "PRIMARY_id",
-          "type": "PRIMARY KEY",
-          "columnName": "id"
-        },
-        "staffs_id_to_terms_user_id": {
-          "type": "FOREIGN KEY",
-          "name": "staffs_id_to_terms_user_id",
-          "columnName": "user_id",
-          "targetTableName": "staffs",
-          "targetColumnName": "id",
-          "updateConstraint": "NO_ACTION",
-          "deleteConstraint": "SET_NULL"
+          "columnNames": [
+            "id"
+          ]
         }
       }
     }
