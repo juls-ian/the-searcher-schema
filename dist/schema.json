@@ -1,7 +1,7 @@
 {
   "tables": {
-    "staffs": {
-      "name": "staffs",
+    "users": {
+      "name": "users",
       "columns": {
         "id": {
           "name": "id",
@@ -233,10 +233,10 @@
             "email"
           ]
         },
-        "CHECK_role": {
-          "name": "CHECK_role",
+        "role_check": {
+          "name": "role_check",
           "type": "CHECK",
-          "detail": "CHECK (role IN ('admin', 'editor', 'staff'))"
+          "detail": "role IN ('admin', 'editor', 'staff')"
         }
       }
     },
@@ -267,12 +267,12 @@
           "notNull": false,
           "comment": null
         },
-        "role": {
-          "name": "role",
-          "type": "varchar",
+        "is_current": {
+          "name": "is_current",
+          "type": "bool",
           "default": null,
           "check": null,
-          "notNull": true,
+          "notNull": false,
           "comment": null
         },
         "archived_at": {
@@ -294,71 +294,18 @@
             "id"
           ]
         },
-        "staffs_id_to_editorial_boards_staff_id": {
+        "users_id_to_editorial_boards_staff_id": {
           "type": "FOREIGN KEY",
-          "name": "staffs_id_to_editorial_boards_staff_id",
-          "columnName": "staff_id",
-          "targetTableName": "staffs",
-          "targetColumnName": "id",
+          "name": "users_id_to_editorial_boards_staff_id",
+          "columnNames": [
+            "staff_id"
+          ],
+          "targetTableName": "users",
+          "targetColumnNames": [
+            "id"
+          ],
           "updateConstraint": "NO_ACTION",
           "deleteConstraint": "CASCADE"
-        }
-      }
-    },
-    "terms": {
-      "name": "terms",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "serial",
-          "default": null,
-          "check": null,
-          "notNull": true,
-          "comment": null
-        },
-        "user_id": {
-          "name": "user_id",
-          "type": "int4",
-          "default": null,
-          "check": null,
-          "notNull": false,
-          "comment": null
-        },
-        "term": {
-          "name": "term",
-          "type": "varchar",
-          "default": null,
-          "check": null,
-          "notNull": false,
-          "comment": null
-        },
-        "time_stamp": {
-          "name": "time_stamp",
-          "type": "timestamp",
-          "default": null,
-          "check": null,
-          "notNull": false,
-          "comment": null
-        }
-      },
-      "comment": null,
-      "indexes": {},
-      "constraints": {
-        "PRIMARY_id": {
-          "name": "PRIMARY_id",
-          "type": "PRIMARY KEY",
-          "columnNames": [
-            "id"
-          ]
-        },
-        "staffs_id_to_terms_user_id": {
-          "type": "FOREIGN KEY",
-          "name": "staffs_id_to_terms_user_id",
-          "columnName": "user_id",
-          "targetTableName": "staffs",
-          "targetColumnName": "id",
-          "updateConstraint": "NO_ACTION",
-          "deleteConstraint": "SET_NULL"
         }
       }
     },
@@ -434,9 +381,13 @@
         "articles_categories_id_to_articles_categories_parent_id": {
           "type": "FOREIGN KEY",
           "name": "articles_categories_id_to_articles_categories_parent_id",
-          "columnName": "parent_id",
+          "columnNames": [
+            "parent_id"
+          ],
           "targetTableName": "articles_categories",
-          "targetColumnName": "id",
+          "targetColumnNames": [
+            "id"
+          ],
           "updateConstraint": "NO_ACTION",
           "deleteConstraint": "SET_NULL"
         }
@@ -541,9 +492,17 @@
           "notNull": true,
           "comment": null
         },
-        "cover_artist": {
-          "name": "cover_artist",
+        "cover_artist_id": {
+          "name": "cover_artist_id",
           "type": "int4",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "cover_credit_type": {
+          "name": "cover_credit_type",
+          "type": "varchar",
           "default": null,
           "check": null,
           "notNull": false,
@@ -565,8 +524,8 @@
           "notNull": false,
           "comment": null
         },
-        "thumbnail_artist": {
-          "name": "thumbnail_artist",
+        "thumbnail_artist_id": {
+          "name": "thumbnail_artist_id",
           "type": "int4",
           "default": null,
           "check": null,
@@ -576,6 +535,22 @@
         "add_to_ticker": {
           "name": "add_to_ticker",
           "type": "bool",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "ticker_expires_at": {
+          "name": "ticker_expires_at",
+          "type": "date",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "publisher_id": {
+          "name": "publisher_id",
+          "type": "int4",
           "default": null,
           "check": null,
           "notNull": false,
@@ -634,45 +609,78 @@
         "articles_categories_id_to_articles_category_id": {
           "type": "FOREIGN KEY",
           "name": "articles_categories_id_to_articles_category_id",
-          "columnName": "category_id",
+          "columnNames": [
+            "category_id"
+          ],
           "targetTableName": "articles_categories",
-          "targetColumnName": "id",
+          "targetColumnNames": [
+            "id"
+          ],
           "updateConstraint": "NO_ACTION",
           "deleteConstraint": "CASCADE"
         },
-        "staffs_id_to_articles_writer_id": {
+        "users_id_to_articles_writer_id": {
           "type": "FOREIGN KEY",
-          "name": "staffs_id_to_articles_writer_id",
-          "columnName": "writer_id",
-          "targetTableName": "staffs",
-          "targetColumnName": "id",
+          "name": "users_id_to_articles_writer_id",
+          "columnNames": [
+            "writer_id"
+          ],
+          "targetTableName": "users",
+          "targetColumnNames": [
+            "id"
+          ],
           "updateConstraint": "NO_ACTION",
           "deleteConstraint": "NO_ACTION"
         },
         "articles_id_to_articles_article_series": {
           "type": "FOREIGN KEY",
           "name": "articles_id_to_articles_article_series",
-          "columnName": "article_series",
+          "columnNames": [
+            "article_series"
+          ],
           "targetTableName": "articles",
-          "targetColumnName": "id",
+          "targetColumnNames": [
+            "id"
+          ],
           "updateConstraint": "NO_ACTION",
           "deleteConstraint": "SET_NULL"
         },
-        "staffs_id_to_articles_cover_artist": {
+        "users_id_to_articles_cover_artist_id": {
           "type": "FOREIGN KEY",
-          "name": "staffs_id_to_articles_cover_artist",
-          "columnName": "cover_artist",
-          "targetTableName": "staffs",
-          "targetColumnName": "id",
+          "name": "users_id_to_articles_cover_artist_id",
+          "columnNames": [
+            "cover_artist_id"
+          ],
+          "targetTableName": "users",
+          "targetColumnNames": [
+            "id"
+          ],
           "updateConstraint": "NO_ACTION",
           "deleteConstraint": "NO_ACTION"
         },
-        "staffs_id_to_articles_thumbnail_artist": {
+        "users_id_to_articles_thumbnail_artist_id": {
           "type": "FOREIGN KEY",
-          "name": "staffs_id_to_articles_thumbnail_artist",
-          "columnName": "thumbnail_artist",
-          "targetTableName": "staffs",
-          "targetColumnName": "id",
+          "name": "users_id_to_articles_thumbnail_artist_id",
+          "columnNames": [
+            "thumbnail_artist_id"
+          ],
+          "targetTableName": "users",
+          "targetColumnNames": [
+            "id"
+          ],
+          "updateConstraint": "NO_ACTION",
+          "deleteConstraint": "NO_ACTION"
+        },
+        "users_id_to_articles_publisher_id": {
+          "type": "FOREIGN KEY",
+          "name": "users_id_to_articles_publisher_id",
+          "columnNames": [
+            "publisher_id"
+          ],
+          "targetTableName": "users",
+          "targetColumnNames": [
+            "id"
+          ],
           "updateConstraint": "NO_ACTION",
           "deleteConstraint": "NO_ACTION"
         }
@@ -721,8 +729,8 @@
           "notNull": false,
           "comment": null
         },
-        "is_allday": {
-          "name": "is_allday",
+        "is_perpetual": {
+          "name": "is_perpetual",
           "type": "bool",
           "default": null,
           "check": null,
@@ -731,7 +739,7 @@
         },
         "venue": {
           "name": "venue",
-          "type": "varchar",
+          "type": "text",
           "default": null,
           "check": null,
           "notNull": false,
@@ -739,7 +747,7 @@
         },
         "details": {
           "name": "details",
-          "type": "varchar",
+          "type": "text",
           "default": null,
           "check": null,
           "notNull": false,
@@ -802,6 +810,11 @@
           "columnNames": [
             "slug"
           ]
+        },
+        "event_type_check": {
+          "name": "event_type_check",
+          "type": "CHECK",
+          "detail": "event_type IN  ('release', 'meeting', 'event')"
         }
       }
     },
@@ -832,8 +845,8 @@
           "notNull": true,
           "comment": null
         },
-        "posted_at": {
-          "name": "posted_at",
+        "published_at": {
+          "name": "published_at",
           "type": "timestamp",
           "default": null,
           "check": null,
@@ -872,8 +885,16 @@
           "notNull": false,
           "comment": null
         },
-        "cover_artist": {
-          "name": "cover_artist",
+        "cover_artist_id": {
+          "name": "cover_artist_id",
+          "type": "int4",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "publisher_id": {
+          "name": "publisher_id",
           "type": "int4",
           "default": null,
           "check": null,
@@ -922,21 +943,42 @@
             "slug"
           ]
         },
-        "staffs_id_to_bulletin_writer_id": {
+        "users_id_to_bulletin_writer_id": {
           "type": "FOREIGN KEY",
-          "name": "staffs_id_to_bulletin_writer_id",
-          "columnName": "writer_id",
-          "targetTableName": "staffs",
-          "targetColumnName": "id",
+          "name": "users_id_to_bulletin_writer_id",
+          "columnNames": [
+            "writer_id"
+          ],
+          "targetTableName": "users",
+          "targetColumnNames": [
+            "id"
+          ],
           "updateConstraint": "NO_ACTION",
           "deleteConstraint": "NO_ACTION"
         },
-        "staffs_id_to_bulletin_cover_artist": {
+        "users_id_to_bulletin_cover_artist_id": {
           "type": "FOREIGN KEY",
-          "name": "staffs_id_to_bulletin_cover_artist",
-          "columnName": "cover_artist",
-          "targetTableName": "staffs",
-          "targetColumnName": "id",
+          "name": "users_id_to_bulletin_cover_artist_id",
+          "columnNames": [
+            "cover_artist_id"
+          ],
+          "targetTableName": "users",
+          "targetColumnNames": [
+            "id"
+          ],
+          "updateConstraint": "NO_ACTION",
+          "deleteConstraint": "NO_ACTION"
+        },
+        "users_id_to_bulletin_publisher_id": {
+          "type": "FOREIGN KEY",
+          "name": "users_id_to_bulletin_publisher_id",
+          "columnNames": [
+            "publisher_id"
+          ],
+          "targetTableName": "users",
+          "targetColumnNames": [
+            "id"
+          ],
           "updateConstraint": "NO_ACTION",
           "deleteConstraint": "NO_ACTION"
         }
@@ -967,6 +1009,14 @@
           "default": null,
           "check": null,
           "notNull": true,
+          "comment": null
+        },
+        "caption": {
+          "name": "caption",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "notNull": false,
           "comment": null
         },
         "category": {
@@ -1001,6 +1051,14 @@
           "notNull": true,
           "comment": null
         },
+        "credit_type": {
+          "name": "credit_type",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
         "thumbnail_photo": {
           "name": "thumbnail_photo",
           "type": "text",
@@ -1009,12 +1067,20 @@
           "notNull": true,
           "comment": null
         },
-        "thumbnail_artist": {
-          "name": "thumbnail_artist",
+        "thumbnail_artist_id": {
+          "name": "thumbnail_artist_id",
           "type": "int4",
           "default": null,
           "check": null,
           "notNull": true,
+          "comment": null
+        },
+        "publisher_id": {
+          "name": "publisher_id",
+          "type": "int4",
+          "default": null,
+          "check": null,
+          "notNull": false,
           "comment": null
         },
         "created_at": {
@@ -1067,23 +1133,142 @@
             "slug"
           ]
         },
-        "staffs_id_to_multimedia_multimedia_artist": {
+        "users_id_to_multimedia_multimedia_artist": {
           "type": "FOREIGN KEY",
-          "name": "staffs_id_to_multimedia_multimedia_artist",
-          "columnName": "multimedia_artist",
-          "targetTableName": "staffs",
-          "targetColumnName": "id",
+          "name": "users_id_to_multimedia_multimedia_artist",
+          "columnNames": [
+            "multimedia_artist"
+          ],
+          "targetTableName": "users",
+          "targetColumnNames": [
+            "id"
+          ],
           "updateConstraint": "NO_ACTION",
           "deleteConstraint": "NO_ACTION"
         },
-        "staffs_id_to_multimedia_thumbnail_artist": {
+        "users_id_to_multimedia_thumbnail_artist_id": {
           "type": "FOREIGN KEY",
-          "name": "staffs_id_to_multimedia_thumbnail_artist",
-          "columnName": "thumbnail_artist",
-          "targetTableName": "staffs",
-          "targetColumnName": "id",
+          "name": "users_id_to_multimedia_thumbnail_artist_id",
+          "columnNames": [
+            "thumbnail_artist_id"
+          ],
+          "targetTableName": "users",
+          "targetColumnNames": [
+            "id"
+          ],
           "updateConstraint": "NO_ACTION",
           "deleteConstraint": "NO_ACTION"
+        },
+        "users_id_to_multimedia_publisher_id": {
+          "type": "FOREIGN KEY",
+          "name": "users_id_to_multimedia_publisher_id",
+          "columnNames": [
+            "publisher_id"
+          ],
+          "targetTableName": "users",
+          "targetColumnNames": [
+            "id"
+          ],
+          "updateConstraint": "NO_ACTION",
+          "deleteConstraint": "NO_ACTION"
+        }
+      }
+    },
+    "multimedia_user": {
+      "name": "multimedia_user",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "default": null,
+          "check": null,
+          "notNull": true,
+          "comment": null
+        },
+        "multimedia_id": {
+          "name": "multimedia_id",
+          "type": "int8",
+          "default": null,
+          "check": null,
+          "notNull": true,
+          "comment": null
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "int8",
+          "default": null,
+          "check": null,
+          "notNull": true,
+          "comment": null
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "deleted_at": {
+          "name": "deleted_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        }
+      },
+      "comment": null,
+      "indexes": {},
+      "constraints": {
+        "PRIMARY_id": {
+          "name": "PRIMARY_id",
+          "type": "PRIMARY KEY",
+          "columnNames": [
+            "id"
+          ]
+        },
+        "fk_multimedia_user_multimedia_id": {
+          "type": "FOREIGN KEY",
+          "name": "fk_multimedia_user_multimedia_id",
+          "columnNames": [
+            "multimedia_id"
+          ],
+          "targetTableName": "multimedia",
+          "targetColumnNames": [
+            "id"
+          ],
+          "updateConstraint": "NO_ACTION",
+          "deleteConstraint": "CASCADE"
+        },
+        "fk_multimedia_user_user_id": {
+          "type": "FOREIGN KEY",
+          "name": "fk_multimedia_user_user_id",
+          "columnNames": [
+            "user_id"
+          ],
+          "targetTableName": "users",
+          "targetColumnNames": [
+            "id"
+          ],
+          "updateConstraint": "NO_ACTION",
+          "deleteConstraint": "CASCADE"
+        },
+        "unique_multimedia_user": {
+          "name": "unique_multimedia_user",
+          "type": "UNIQUE",
+          "columnNames": [
+            "multimedia_id",
+            "user_id"
+          ]
         }
       }
     },
@@ -1130,8 +1315,8 @@
           "notNull": true,
           "comment": null
         },
-        "contributors": {
-          "name": "contributors",
+        "editors": {
+          "name": "editors",
           "type": "text",
           "default": null,
           "check": null,
@@ -1170,28 +1355,12 @@
           "notNull": true,
           "comment": null
         },
-        "editors": {
-          "name": "editors",
+        "contributors": {
+          "name": "contributors",
           "type": "text",
           "default": null,
           "check": null,
           "notNull": true,
-          "comment": null
-        },
-        "outsourced_photos": {
-          "name": "outsourced_photos",
-          "type": "text",
-          "default": null,
-          "check": null,
-          "notNull": true,
-          "comment": null
-        },
-        "others": {
-          "name": "others",
-          "type": "text",
-          "default": null,
-          "check": null,
-          "notNull": false,
           "comment": null
         },
         "issue_file": {
@@ -1221,6 +1390,14 @@
         "archived_at": {
           "name": "archived_at",
           "type": "timestamp",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "publisher_id": {
+          "name": "publisher_id",
+          "type": "int4",
           "default": null,
           "check": null,
           "notNull": false,
@@ -1267,6 +1444,19 @@
           "columnNames": [
             "slug"
           ]
+        },
+        "users_id_to_issues_publisher_id": {
+          "type": "FOREIGN KEY",
+          "name": "users_id_to_issues_publisher_id",
+          "columnNames": [
+            "publisher_id"
+          ],
+          "targetTableName": "users",
+          "targetColumnNames": [
+            "id"
+          ],
+          "updateConstraint": "NO_ACTION",
+          "deleteConstraint": "NO_ACTION"
         }
       }
     },
@@ -1321,6 +1511,14 @@
           "notNull": true,
           "comment": null
         },
+        "published_at": {
+          "name": "published_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
         "series_order": {
           "name": "series_order",
           "type": "int4",
@@ -1337,17 +1535,33 @@
           "notNull": true,
           "comment": null
         },
-        "cover_artist": {
-          "name": "cover_artist",
+        "cover_caption": {
+          "name": "cover_caption",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "cover_artist_id": {
+          "name": "cover_artist_id",
           "type": "int4",
           "default": null,
           "check": null,
           "notNull": false,
           "comment": null
         },
-        "cover_caption": {
-          "name": "cover_caption",
+        "credit_type": {
+          "name": "credit_type",
           "type": "varchar",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "publisher_id": {
+          "name": "publisher_id",
+          "type": "int4",
           "default": null,
           "check": null,
           "notNull": false,
@@ -1403,35 +1617,60 @@
             "slug"
           ]
         },
-        "CHECK_segment_type": {
-          "name": "CHECK_segment_type",
+        "segment_type_check": {
+          "name": "segment_type_check",
           "type": "CHECK",
-          "detail": "CHECK (segment_type IN ('article', 'poll'))"
+          "detail": "segment_type IN ('article', 'poll')"
         },
         "community_segments_id_to_community_segments_series_of": {
           "type": "FOREIGN KEY",
           "name": "community_segments_id_to_community_segments_series_of",
-          "columnName": "series_of",
+          "columnNames": [
+            "series_of"
+          ],
           "targetTableName": "community_segments",
-          "targetColumnName": "id",
+          "targetColumnNames": [
+            "id"
+          ],
           "updateConstraint": "NO_ACTION",
           "deleteConstraint": "NO_ACTION"
         },
-        "staffs_id_to_community_segments_writer_id": {
+        "users_id_to_community_segments_writer_id": {
           "type": "FOREIGN KEY",
-          "name": "staffs_id_to_community_segments_writer_id",
-          "columnName": "writer_id",
-          "targetTableName": "staffs",
-          "targetColumnName": "id",
+          "name": "users_id_to_community_segments_writer_id",
+          "columnNames": [
+            "writer_id"
+          ],
+          "targetTableName": "users",
+          "targetColumnNames": [
+            "id"
+          ],
           "updateConstraint": "NO_ACTION",
           "deleteConstraint": "NO_ACTION"
         },
-        "staffs_id_to_community_segments_cover_artist": {
+        "users_id_to_community_segments_cover_artist_id": {
           "type": "FOREIGN KEY",
-          "name": "staffs_id_to_community_segments_cover_artist",
-          "columnName": "cover_artist",
-          "targetTableName": "staffs",
-          "targetColumnName": "id",
+          "name": "users_id_to_community_segments_cover_artist_id",
+          "columnNames": [
+            "cover_artist_id"
+          ],
+          "targetTableName": "users",
+          "targetColumnNames": [
+            "id"
+          ],
+          "updateConstraint": "NO_ACTION",
+          "deleteConstraint": "NO_ACTION"
+        },
+        "users_id_to_community_segments_publisher_id": {
+          "type": "FOREIGN KEY",
+          "name": "users_id_to_community_segments_publisher_id",
+          "columnNames": [
+            "publisher_id"
+          ],
+          "targetTableName": "users",
+          "targetColumnNames": [
+            "id"
+          ],
           "updateConstraint": "NO_ACTION",
           "deleteConstraint": "NO_ACTION"
         }
@@ -1440,6 +1679,14 @@
     "segments_poll": {
       "name": "segments_poll",
       "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "default": null,
+          "check": null,
+          "notNull": true,
+          "comment": null
+        },
         "segment_id": {
           "name": "segment_id",
           "type": "int4",
@@ -1464,8 +1711,8 @@
           "notNull": true,
           "comment": null
         },
-        "duration": {
-          "name": "duration",
+        "ends_at": {
+          "name": "ends_at",
           "type": "interval",
           "default": null,
           "check": null,
@@ -1476,12 +1723,23 @@
       "comment": null,
       "indexes": {},
       "constraints": {
+        "PRIMARY_id": {
+          "name": "PRIMARY_id",
+          "type": "PRIMARY KEY",
+          "columnNames": [
+            "id"
+          ]
+        },
         "community_segments_id_to_segments_poll_segment_id": {
           "type": "FOREIGN KEY",
           "name": "community_segments_id_to_segments_poll_segment_id",
-          "columnName": "segment_id",
+          "columnNames": [
+            "segment_id"
+          ],
           "targetTableName": "community_segments",
-          "targetColumnName": "id",
+          "targetColumnNames": [
+            "id"
+          ],
           "updateConstraint": "NO_ACTION",
           "deleteConstraint": "CASCADE"
         },
@@ -1497,6 +1755,14 @@
     "segments_article": {
       "name": "segments_article",
       "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "default": null,
+          "check": null,
+          "notNull": true,
+          "comment": null
+        },
         "segment_id": {
           "name": "segment_id",
           "type": "int4",
@@ -1517,12 +1783,23 @@
       "comment": null,
       "indexes": {},
       "constraints": {
+        "PRIMARY_id": {
+          "name": "PRIMARY_id",
+          "type": "PRIMARY KEY",
+          "columnNames": [
+            "id"
+          ]
+        },
         "community_segments_id_to_segments_article_segment_id": {
           "type": "FOREIGN KEY",
           "name": "community_segments_id_to_segments_article_segment_id",
-          "columnName": "segment_id",
+          "columnNames": [
+            "segment_id"
+          ],
           "targetTableName": "community_segments",
-          "targetColumnName": "id",
+          "targetColumnNames": [
+            "id"
+          ],
           "updateConstraint": "NO_ACTION",
           "deleteConstraint": "CASCADE"
         },
@@ -1531,6 +1808,131 @@
           "type": "PRIMARY KEY",
           "columnNames": [
             "segment_id"
+          ]
+        }
+      }
+    },
+    "archives": {
+      "name": "archives",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "default": null,
+          "check": null,
+          "notNull": true,
+          "comment": null
+        },
+        "archivable_type": {
+          "name": "archivable_type",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "notNull": true,
+          "comment": null
+        },
+        "archivable_id": {
+          "name": "archivable_id",
+          "type": "int8",
+          "default": null,
+          "check": null,
+          "notNull": true,
+          "comment": null
+        },
+        "title": {
+          "name": "title",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "slug": {
+          "name": "slug",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "data": {
+          "name": "data",
+          "type": "jsonb",
+          "default": null,
+          "check": null,
+          "notNull": true,
+          "comment": null
+        },
+        "archived_at": {
+          "name": "archived_at",
+          "type": "timestamptz",
+          "default": null,
+          "check": null,
+          "notNull": true,
+          "comment": null
+        },
+        "archiver_id": {
+          "name": "archiver_id",
+          "type": "int4",
+          "default": null,
+          "check": null,
+          "notNull": true,
+          "comment": null
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamptz",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "index": {
+          "name": "index",
+          "type": "idx_archives_slug",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        }
+      },
+      "comment": null,
+      "indexes": {},
+      "constraints": {
+        "PRIMARY_id": {
+          "name": "PRIMARY_id",
+          "type": "PRIMARY KEY",
+          "columnNames": [
+            "id"
+          ]
+        },
+        "users_id_to_archives_archiver_id": {
+          "type": "FOREIGN KEY",
+          "name": "users_id_to_archives_archiver_id",
+          "columnNames": [
+            "archiver_id"
+          ],
+          "targetTableName": "users",
+          "targetColumnNames": [
+            "id"
+          ],
+          "updateConstraint": "NO_ACTION",
+          "deleteConstraint": "NO_ACTION"
+        },
+        "archives_archivable_unique": {
+          "name": "archives_archivable_unique",
+          "type": "UNIQUE",
+          "columnNames": [
+            "archivable_type",
+            "archivable_id"
           ]
         }
       }
@@ -1582,6 +1984,44 @@
           ]
         }
       }
+    }
+  },
+  "enums": {
+    "staff_status": {
+      "name": "staff_status",
+      "values": [
+        "active",
+        "inactive"
+      ],
+      "comment": null
+    },
+    "bulletin_category": {
+      "name": "bulletin_category",
+      "values": [
+        "announcement",
+        "advisory",
+        "reminder"
+      ],
+      "comment": null
+    },
+    "multimedia_category": {
+      "name": "multimedia_category",
+      "values": [
+        "announcement",
+        "advisory",
+        "reminder"
+      ],
+      "comment": null
+    },
+    "archive_category": {
+      "name": "archive_category",
+      "values": [
+        "article",
+        "multimedia",
+        "issues",
+        "ed_board"
+      ],
+      "comment": null
     }
   }
 }
